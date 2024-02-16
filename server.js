@@ -21,7 +21,7 @@ mongoose.connect(connection, {
 */
 
 app.use(cors({
-  origin: ['http://localhost:3001', 'https://www.digitalocean.com/'] 
+  origin: ['http://localhost:3001', 'https://www.digitalocean.com/', 'https://bbwbank-frontend.onrender.com'] 
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
