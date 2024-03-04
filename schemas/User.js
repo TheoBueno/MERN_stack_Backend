@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please enter a password'],
     trim: true,
   },
+  role: {
+    type: String,
+    default: 'Account Holder' 
+  },
   balance: {
     type: Number,
     min: [0, 'Overdrafting from your account is not allowed, please enter a positive amount'],
