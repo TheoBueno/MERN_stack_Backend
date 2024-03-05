@@ -28,7 +28,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 server.use(cors({
-  origin: ['http://localhost:3001', 'https://bbwbank-frontend.onrender.com'] 
+  origin: ['http://localhost:3001', 'https://bbwbank-frontend.onrender.com','https://theo-buenofullstackbankingapplication.onrender.com/'] 
 }))
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json());
