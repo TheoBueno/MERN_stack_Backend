@@ -5,7 +5,7 @@ require("dotenv").config();
 const User = require("./schemas/User")
 
 // Connection Converted to Mongoose
-const url             = process.env.REACT_APP_MONGO_URI //URI might be// mongoose.connect('mongodb://0.0.0.0:27017/myproject')
+const url             = process.env.REACT_APP_MONGO_URI
 const dbName          = 'myproject';
 const connection      = url+dbName 
 
@@ -135,8 +135,8 @@ async function findName(name){ //  DAL call: //account/byname
   try{
     const update = await User.updateOne({ email: email }, { $set: { password: newPassword } })
     console.log(update)
-    console.log(`Password for ${email}'s account apdated`)
-    return(`Password for ${email}'s account apdated`)
+    console.log(`Password for ${email}'s account updated`)
+    return(`Password for ${email}'s account updated`)
   } catch(e) { 
     console.log(`${e.message}; The above text was an error message.`); 
     return(`An Error occured. Error Details: ${e.message}`)}

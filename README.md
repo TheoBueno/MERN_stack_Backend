@@ -42,6 +42,9 @@ Got to [http://localhost:PORT1](http://localhost:8080) to confirm functionality 
 The page will reload as you make changes to your code - works similar to React.\
 Keep an eye on your terminal for prompts of feedback.
 
+Here's a link to my API's Documentation for further details:
+[POSTMAN Documentation](https://documenter.getpostman.com/view/31599509/2sA2xnwUmE).
+
 ### `Frontend Dev`
 meanwhile you will need to create a '.env' file here as well, with the following lines:
 ```

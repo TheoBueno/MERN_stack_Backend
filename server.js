@@ -43,13 +43,14 @@ server.get('/account/all', async (req, res) => { // 'dal' call '/all'
     res.send(allUsers)
   } catch (e) {res.send(`${e.message}; The above text was an error message.`)}
 }) 
-server.get('/all', async (req, res) => { // Backup call: '/all'
+server.get('/all', async (req, res) => { // Backup No Dal call: '/all'
   try{
     const allUsers = await User.find()
     console.log(`Backups '/All' call used. Sent as res.send. I.e.: ${allUsers[2].name}`)
     res.send(allUsers)
   } catch (e) {console.log(`${e.message}; The above text was an error message.`)}
 }) 
+
 server.get('/account/newUser/:name/:email/:password', async (req, res) => { // 'dal' call '/newUser'
 //newUser('testMushroom', 'testemail2@ntnd.js', 'testracer')
   try{
@@ -57,26 +58,26 @@ server.get('/account/newUser/:name/:email/:password', async (req, res) => { // '
     res.send(newUser)
   } catch (e) {res.send(newUser)}
 })
-server.get('/account/login/:email/:password', async(req, res) => { // DAL call '/login'
+server.get('/account/login/:email/:password', async(req, res) => { // 'dal' call   '/login'
   try{
     const loggedUser = await dal.login(req.params.email, req.params.password)
     res.send(loggedUser)
   } catch (e) {res.send(loggedUser)}  
 })
-server.get('/account/:email/deposit/:amount', async (req, res) => { // 'dal' call '/addMoney'
+server.get('/account/:email/deposit/:amount', async (req, res) => { // 'dal' call  '/addMoney'
   try{
     const depOp = await dal.addMoney(req.params.email, req.params.amount)    
     res.send(depOp)
   } catch(e) {res.send(depOp)}
 })
-server.get('/account/:email/withdraw/:amount', async (req, res) => { // 'dal' call '/removeMoney'
+server.get('/account/:email/withdraw/:amount', async (req, res) => { // 'dal' call  '/removeMoney'
   try{
     const depOp = await dal.removeMoney(req.params.email, req.params.amount)    
     res.send(depOp)
   } catch(e) {res.send(depOp)}
 })
 
-// TODO: ADM OPs need to have Auth Added for gen access
+// TODO : ADM OPs need to have Auth Added for gen access
 server.get('/account/byemail/:email', async (req, res) => { // AdminOp: Locate by Email
   try{
     const response = await dal.findEmail(req.params.email) 
@@ -102,20 +103,20 @@ server.get('/account/:email/updtpw/:newpassword', async (req, res) => {
 })
 
 // Validation of Login inside Backend
-server.get('/account/passwordval/:password', async (req, res) => {
-  try{
-    const validPWs = await dal.validPW( req.params.password )
-    const trueorfalse = await (validPWs === req.params.password) ? (true) : (false) 
-    res.send(trueorfalse)
-  }catch(e){res.send(e.message)}
-})
-server.get('/account/emailval/:email', async (req, res) => {
-  try{
-    const validEMLs = await dal.validEML( req.params.email )
-    const trueorfalse = await (validEMLs === req.params.email) ? (true) : (false) 
-    res.send(trueorfalse)
-  }catch(e){res.send(e.message)}
-})
+// server.get('/account/passwordval/:password', async (req, res) => {
+//   try{
+//     const validPWs = await dal.validPW( req.params.password )
+//     const trueorfalse = await (validPWs === req.params.password) ? (true) : (false) 
+//     res.send(trueorfalse)
+//   }catch(e){res.send(e.message)}
+// })
+// server.get('/account/emailval/:email', async (req, res) => {
+//   try{
+//     const validEMLs = await dal.validEML( req.params.email )
+//     const trueorfalse = await (validEMLs === req.params.email) ? (true) : (false) 
+//     res.send(trueorfalse)
+//   }catch(e){res.send(e.message)}
+// })
 server.get('/account/pwemlval/:email/:password', async (req, res) => {
   try{
     const userInfo     = await dal.validLogin( req.params.email )
@@ -129,42 +130,42 @@ server.get('/account/pwemlval/:email/:password', async (req, res) => {
 
 
 
-//createTest() // add user - #V2 //
-async function createTest() {
-  try{
-    const user = await User.create({ 
-      name: 'BlueShell', 
-      email: 'shellserviceprime@ntd.js', 
-      password: '1placedown',  
-    })
-    console.log(user)
-  }catch(e){    console.log(e.message)}
-}
+// //createTest() // add user - #V2 //
+// async function createTest() {
+//   try{
+//     const user = await User.create({ 
+//       name: 'BlueShell', 
+//       email: 'shellserviceprime@ntd.js', 
+//       password: '1placedown',  
+//     })
+//     console.log(user)
+//   }catch(e){    console.log(e.message)}
+// }
 
-//findOne() //TODO: change value to req.params.email and add to api
-async function findOne() {
-  try{
-    const user = await User.findOne({ email: 'hailkingboo@ntd.js' })
-    console.log(user)
-  } catch (e) {console.log(e.message)}
-}
+// //findOne() //TODO: change value to req.params.email and add to api
+// async function findOne() {
+//   try{
+//     const user = await User.findOne({ email: 'hailkingboo@ntd.js' })
+//     console.log(user)
+//   } catch (e) {console.log(e.message)}
+// }
 
-//getName()
-async function getName() {
-  try{
-    const user = await User.findByName('Didi Kong')
-    console.log(user)
-  } catch (e) {console.log(e.message)}
-}
+// //getName()
+// async function getName() {
+//   try{
+//     const user = await User.findByName('Didi Kong')
+//     console.log(user)
+//   } catch (e) {console.log(e.message)}
+// }
 
-//getEmail()
-async function getEmail() {
-  try{
-    const user = await User.findByEmail('hailkingboo@ntd.js')
-    console.log(`${user[0].name}'s balance is ${user[0].balance} coins`)
-    console.log(user[0])
-  } catch (e) {console.log(e.message)}
-}
+// //getEmail()
+// async function getEmail() {
+//   try{
+//     const user = await User.findByEmail('hailkingboo@ntd.js')
+//     console.log(`${user[0].name}'s balance is ${user[0].balance} coins`)
+//     console.log(user[0])
+//   } catch (e) {console.log(e.message)}
+// }
 
 // TODO: ADMIN ACCESS ONLY SECTION TODO:
 
@@ -197,10 +198,6 @@ async function queryByName() {
       .select('balance')
       console.log(user)
   } catch(e) {console.log(e.message)} }
-
-server.get('/find/:email', async (req, res) => {
-  const response = myproject.users.find({ email: req.params.email })  
-})
 
 server.listen(PORT, () => {
   console.log(`Running at server.js on port: ${PORT}`)
