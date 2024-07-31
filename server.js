@@ -5,7 +5,7 @@ const cors       = require ('cors')
 require("dotenv").config();
 const server  = express()
 const PORT = process.env.REACT_APP_SERVERPORT
-
+ 
 const dal  = require ('./dal.js') // Connecting to Mongoose at the Dal
 const User = require("./schemas/User.js")
 
