@@ -129,8 +129,8 @@ async function findName(name){ //  DAL call: //account/byname
     console.log(`${e.message}; The above text was an error message.`); 
     return(`An Error occured. Error Details: ${e.message}`)}
 }
- 
-// Logged In OPERATIONS TODO: Logged In OPs need to have Auth Added for 
+  
+// Logged In OPERATIONS TODO: Logged In OPs need to have Auth Added for
  async function changePW(email, newPassword){ //  DAL call: /account/:email/updtpw
   try{
     const update = await User.updateOne({ email: email }, { $set: { password: newPassword } })
